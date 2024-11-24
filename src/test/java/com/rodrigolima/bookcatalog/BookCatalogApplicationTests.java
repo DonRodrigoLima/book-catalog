@@ -1,4 +1,4 @@
-package com.rodrigolima.book_catalog;
+package com.rodrigolima.bookcatalog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

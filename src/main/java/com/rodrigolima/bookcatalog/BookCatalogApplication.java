@@ -1,4 +1,4 @@
-package com.rodrigolima.book_catalog;
+package com.rodrigolima.bookcatalog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
