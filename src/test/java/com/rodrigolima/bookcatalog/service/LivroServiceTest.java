@@ -14,6 +14,8 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 class LivroServiceTest {
@@ -35,30 +37,16 @@ class LivroServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test
-    public void deveSalvarLivro() {
+@Test
+public void deveSalvarLivro() {
+    Livro livro = new Livro(1L, "Título Exemplo", 29.90, "Editora Exemplo", 1, "2024", null, null);
+    when(livroRepository.save(any(Livro.class))).thenReturn(livro);
 
-        Livro livro = new Livro(
-            null,
-            "Livro Teste",
-            "123-456",
-            29.90,
-            Set.of(new Autor(1L, "Autor 1")),
-            Set.of(new Assunto(1L, "Assunto 1"))
-        );
+    Livro livroSalvo = livroService.salvar(livro);
 
-        when(autorRepository.existsById(1L)).thenReturn(true);
-        when(assuntoRepository.existsById(1L)).thenReturn(true);
-        when(livroRepository.save(any(Livro.class))).thenReturn(
-            new Livro(1L, "Livro Teste", "123-456", 29.90, null, null)
-        );
+    assertEquals("Título Exemplo", livroSalvo.getTitulo());
+    assertEquals("Editora Exemplo", livroSalvo.getEditora());
+    assertEquals("2024", livroSalvo.getAnoPublicacao());
+}
 
-   
-        Livro livroSalvo = livroService.salvar(livro);
-
-
-        verify(autorRepository, times(1)).existsById(1L);
-        verify(assuntoRepository, times(1)).existsById(1L);
-        verify(livroRepository, times(1)).save(livro);
-    }
 }

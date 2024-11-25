@@ -18,9 +18,13 @@ public class Livro {
 
     private String titulo;
 
-    private String isbn;
-
     private Double valor;
+
+    private String editora; 
+
+    private Integer edicao; 
+
+    private String anoPublicacao; 
 
     @ManyToMany
     @JoinTable(
@@ -38,4 +42,3 @@ public class Livro {
     )
     private Set<Assunto> assuntos;
 }
-
